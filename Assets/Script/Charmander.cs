@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class Charmander : Singleton<Charmander>
 {
-    public GameObject AttackRange;
+    public GameObject _CharmanderBullet;
 
-    enum Direction
+    private void Start()
     {
-        left,
-        right,
-        up,
-        down
+        _TrackingAttack(_CharmanderBullet);
     }
-    Direction CurrentDir = Direction.down;
-
-    void _SetDir()
+    void _TrackingAttack(GameObject bullet) 
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        StartCoroutine(_Attack());
+        IEnumerator _Attack()
+        {
+            Instantiate(bullet,transform.position,Quaternion.identity);
+            yield return new WaitForSeconds(1);
+        }
     }
     void Update()
     {
