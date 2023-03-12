@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Mob
   - AttackRange
+  - Wepon
+  - Ground
+  - Area
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

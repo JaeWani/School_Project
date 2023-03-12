@@ -4,28 +4,58 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    AttackRange _range = GameObject.Find("AttackRange").GetComponent<AttackRange>();
+    [Range (0,1000)] public int MonsterHP;
+
+    Rigidbody2D rb;
+    Animator _anim;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+    }
+    public void Hit(int Damage)
+    {
+        MonsterHP -= Damage;
+        _anim.SetTrigger("Hit");
+        _KnockBack();
+        Dead();
+    }
+    
+    void Dead()
+    {
+        if(MonsterHP <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    WaitForFixedUpdate wait;
+
+    public bool IsKnockBack = false;
+    void _KnockBack()
     {
-        if (collision.gameObject.CompareTag("AttackRange"))
+        StartCoroutine(KnockBack());
+        IEnumerator KnockBack()
         {
-            _range.InRangeMob.Add(gameObject);
+            yield return wait;
+            
+            Vector3 PlayerPos = Player.I.transform.position;
+            Vector3 dirVec = transform.position - PlayerPos;
+            IsKnockBack = true;
+            rb.AddForce(dirVec.normalized * GameManager.I.KnockBackPower, ForceMode2D.Impulse);
+        }
+        IsKnockBack = false;
+    }
+    private void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.CompareTag("Wepon"))
+        {
+            WeponStat wepon = other.GetComponent<WeponStat>();
+            Hit(wepon.WeponDamage * GameManager.I.playerDamage);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnDisable()
     {
-        if (collision.gameObject.CompareTag("AttackRange"))
-        {
-            int index = _range.InRangeMob.FindIndex(gameObject);
-        }
-    }
-    void Update()
-    {
-        
+        ObjectPooler.ReturnToPool(gameObject);
     }
 }
