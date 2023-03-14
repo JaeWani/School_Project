@@ -25,6 +25,7 @@ public class Monster : MonoBehaviour
     {
         if(MonsterHP <= 0)
         {
+            ObjectPooler.SpawnFromPool("Exp", transform.position);
             gameObject.SetActive(false);
         }
     }
@@ -51,6 +52,7 @@ public class Monster : MonoBehaviour
         if(other.CompareTag("Wepon"))
         {
             WeponStat wepon = other.GetComponent<WeponStat>();
+            Debug.Log(wepon);
             Hit(wepon.WeponDamage * GameManager.I.playerDamage);
         }
     }

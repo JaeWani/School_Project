@@ -5652,6 +5652,9 @@ MonoBehaviour:
   - tag: Ekans
     prefab: {fileID: 4979325555593112680, guid: d66bce084a872e74ca41df4d6764b521, type: 3}
     size: 100
+  - tag: Exp
+    prefab: {fileID: 3407224371759546725, guid: 002d4ae818e408a4394d319feea5831b, type: 3}
+    size: 100
 --- !u!1 &1049791280
 GameObject:
   m_ObjectHideFlags: 0
@@ -10184,7 +10187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1080bc97f0aa7418662f0552d2a4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamage: 0
+  playerDamage: 1
   PlayerSpeed: 4
   PlayerHp: 100
   CurrentPlayer: {fileID: 0}
@@ -14959,7 +14962,7 @@ MonoBehaviour:
   Skill2: {fileID: 284660550}
   Skill3: {fileID: 49107096}
   PlayerLevel: 1
-  NeedExp: 
+  NeedExp: 0000000064000000c80000005e010000f4010000bc020000
 --- !u!4 &1853638053
 Transform:
   m_ObjectHideFlags: 0
@@ -19387,7 +19390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

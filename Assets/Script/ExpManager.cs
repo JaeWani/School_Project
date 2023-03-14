@@ -26,7 +26,7 @@ public class ExpManager : Singleton<ExpManager>
         }
     }
     public int PlayerLevel = 1;
-    public int[] NeedExp = {0,100 , 150, 200, 250, 300, 350,400,500, 600};
+    public List<int> NeedExp = new List<int>();
                                 //0, 1 ,  2   ,  3 ,   4    ,  5 ,   6,   7   , 8   ,  9 , 10
      void LevelUp()
     {
