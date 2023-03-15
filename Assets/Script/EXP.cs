@@ -22,10 +22,10 @@ public class EXP : MonoBehaviour
         }    
     }
     Vector2 _vec;
-    public void PlayerTracking()
+    public void PlayerTracking(GameObject target, GameObject obj)
     {
-        _vec = _player.transform.position - transform.position;
-        _rb.velocity = _vec;
+        _vec = target.transform.position - obj.transform.position;
+        _rb.velocity = _vec * 10;
     }
     private void OnDisable() 
     {

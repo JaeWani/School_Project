@@ -22,13 +22,11 @@ public class ExpManager : Singleton<ExpManager>
             _Exp = value;
             LevelUp();
             _SetExpBar();
-            Debug.Log(_Exp);
         }
     }
     public int PlayerLevel = 1;
     public List<int> NeedExp = new List<int>();
-                                //0, 1 ,  2   ,  3 ,   4    ,  5 ,   6,   7   , 8   ,  9 , 10
-     void LevelUp()
+    void LevelUp()
     {
         if(_Exp >= NeedExp[PlayerLevel])
         {
@@ -50,7 +48,6 @@ public class ExpManager : Singleton<ExpManager>
     {
         float value = Exp / NeedExp[PlayerLevel];
         ExpBar.value = value;
-        Debug.Log(ExpBar.value);
     }
     void _SelectSkill(int num)
     {

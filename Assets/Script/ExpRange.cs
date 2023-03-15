@@ -6,6 +6,8 @@ public class ExpRange : MonoBehaviour
 {
     EXP exp;
     GameObject _player;
+
+    bool IsTracking = false;
     void Start()
     {
         exp = GetComponentInParent<EXP>();
@@ -15,14 +17,12 @@ public class ExpRange : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            _Tracking();
+            IsTracking = true;
         }
     }
-    Vector2 _vec;
-
-    void _Tracking(Vector2 target, Vector2 tracking)
+    private void Update()
     {
-        _vec = target - tracking;
-
+        if(IsTracking == true)
+            exp.PlayerTracking(_player, exp.gameObject);
     }
 }

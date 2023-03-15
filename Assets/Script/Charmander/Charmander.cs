@@ -43,6 +43,8 @@ public class Charmander : Singleton<Charmander>
             break;
         }
     }
+
+
     // 불꽃 세례 스킬
     [Header ("불꽃 세례")]
     [SerializeField] private int _AmberLevel = 0;
@@ -99,12 +101,53 @@ public class Charmander : Singleton<Charmander>
         set
         {
             _FireSpinLevel = value;
+            Debug.Log(_FireSpinLevel);
             _SetSkill();
         }
     }
+
+    [SerializeField] List<GameObject> SpinObj = new List<GameObject>();
+
     void _FireSpin(int level)
     {
-        
+        switch(level)
+        {
+            case 0:
+            break;
+            case 1:
+            _1LV(2);
+            break;
+
+        }
+        void _1LV(float Speed)
+        {
+            int ObjSize = SpinObj.Count;
+            float circleR = 1.5f; // 반지름
+            float deg = 0;  // 각도
+            float objSpeed = Speed; // 회전 속도
+            StartCoroutine(Loof());
+
+            IEnumerator Loof()
+            {
+                deg += 1f * objSpeed;
+                if(deg < 360)
+                {
+                    for(int i = 0; i < ObjSize; i++)
+                    {
+                        var rad = Mathf.Deg2Rad * (deg + (i*(360/ObjSize)));
+                        var x = circleR * Mathf.Sin(rad);
+                        var y = circleR * Mathf.Cos(rad);
+                        SpinObj[i].transform.position = transform.position + new Vector3(x,y); 
+                        SpinObj[i].transform.rotation = Quaternion.Euler(0,0,(deg + (i *(360 / ObjSize))) * -1);
+                    }
+
+                }
+                else
+                    deg = 0;
+                yield return new WaitForSeconds(0.01f);
+                StartCoroutine(Loof());
+            }
+        }
 
     }
 
