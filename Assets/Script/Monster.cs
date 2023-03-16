@@ -58,6 +58,7 @@ public class Monster : MonoBehaviour
     }
     void OnDisable()
     {
+        StopAllCoroutines();
         ObjectPooler.ReturnToPool(gameObject);
     }
 }

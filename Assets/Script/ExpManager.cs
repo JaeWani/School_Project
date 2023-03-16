@@ -7,9 +7,9 @@ public class ExpManager : Singleton<ExpManager>
 {   
     [SerializeField] Slider ExpBar;
 
-    [SerializeField] Button Skill1;
-    [SerializeField] Button Skill2;
-    [SerializeField] Button Skill3;
+    [SerializeField] List<Button> button = new List<Button>();
+
+    [SerializeField] Image SkillPanel;
     private float _Exp = 0;
     public float Exp
     {
@@ -30,14 +30,17 @@ public class ExpManager : Singleton<ExpManager>
     {
         if(_Exp >= NeedExp[PlayerLevel])
         {
+        SkillPanel.transform.localPosition = new Vector2(0,0);
+        PlayerLevel++;
+        Exp = 0;
         Time.timeScale = 0;
         }
     }
     void Start()
     {
-        Skill1.onClick.AddListener(() => _SelectSkill(1));
-        Skill2.onClick.AddListener(() => _SelectSkill(2));
-        Skill3.onClick.AddListener(() => _SelectSkill(3));
+        button[0].onClick.AddListener(() => _SelectSkill(1));
+        button[1].onClick.AddListener(() => _SelectSkill(2));
+        button[2].onClick.AddListener(() => _SelectSkill(3));
     }
     private void Update()
      {
@@ -51,8 +54,23 @@ public class ExpManager : Singleton<ExpManager>
     }
     void _SelectSkill(int num)
     {
-
-
+        int _num = num-1;
+        switch(_num)
+        {
+            case 0:
+            Charmander.I.AmberLevel++;
+            break;
+            case 1:
+            Charmander.I.FireSpinLevel++;
+            break;
+            case 2:
+            Charmander.I.FlamethrowerLevel++;
+            break;
+            default:
+            break;
+        }
+        Time.timeScale = 1;
+        SkillPanel.transform.localPosition = new Vector2(2000,0);
     }
     
 }

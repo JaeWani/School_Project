@@ -64,7 +64,7 @@ public class Charmander : Singleton<Charmander>
     {
         StopAllCoroutines();
         _Ember(_AmberLevel);
-        _Flamethrower(_FlamethrowerLevle);
+        _Flamethrower(_FlamethrowerLevel);
         _FireSpin(_FireSpinLevel);
     }
     void _Ember(int level) 
@@ -152,16 +152,16 @@ public class Charmander : Singleton<Charmander>
     }
 
     [Header ("화염방사")]
-    [SerializeField] private int _FlamethrowerLevle = 0;
-    public int FlamethrowerLevle
+    [SerializeField] private int _FlamethrowerLevel = 0;
+    public int FlamethrowerLevel
     {
         get
         {
-            return _FlamethrowerLevle;
+            return _FlamethrowerLevel;
         }
         set
         {
-            _FlamethrowerLevle = value;
+            _FlamethrowerLevel = value;
             _SetSkill();
         }
     }
