@@ -5170,7 +5170,7 @@ MonoBehaviour:
   - {fileID: 1327566510}
   - {fileID: 152724400}
   - {fileID: 1448427182}
-  _FireBlastLevle: 0
+  _FlamethrowerLevle: 1
 --- !u!114 &637998009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5833,6 +5833,9 @@ MonoBehaviour:
     size: 100
   - tag: Exp
     prefab: {fileID: 3407224371759546725, guid: 002d4ae818e408a4394d319feea5831b, type: 3}
+    size: 100
+  - tag: Flame
+    prefab: {fileID: 1892102298990256557, guid: 73387067962fdca458d2f118b0d8c13a, type: 3}
     size: 100
 --- !u!1 &1049791280
 GameObject:

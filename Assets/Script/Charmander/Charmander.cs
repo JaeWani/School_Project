@@ -64,7 +64,7 @@ public class Charmander : Singleton<Charmander>
     {
         StopAllCoroutines();
         _Ember(_AmberLevel);
-        _FireBlast(_FireBlastLevle);
+        _Flamethrower(_FlamethrowerLevle);
         _FireSpin(_FireSpinLevel);
     }
     void _Ember(int level) 
@@ -151,24 +151,40 @@ public class Charmander : Singleton<Charmander>
 
     }
 
-    [Header ("불대문자")]
-    [SerializeField] private int _FireBlastLevle = 0;
-    public int FireBlastLevle
+    [Header ("화염방사")]
+    [SerializeField] private int _FlamethrowerLevle = 0;
+    public int FlamethrowerLevle
     {
         get
         {
-            return _FireBlastLevle;
+            return _FlamethrowerLevle;
         }
         set
         {
-            _FireBlastLevle = value;
+            _FlamethrowerLevle = value;
             _SetSkill();
         }
     }
-    void _FireBlast(int level)
+    void _Flamethrower(int level)
     {
-
-
+        switch(level)
+        {
+            case 0:
+            break;
+            case 1:
+            StartCoroutine(_1LV());
+            break;
+        }
+        IEnumerator _1LV()
+        {
+            for(int i = 0; i < 2; i++)
+            {
+            Flame flame = ObjectPooler.SpawnFromPool("Flame", transform.position).GetComponent<Flame>();
+            flame._Flame((Flame.dir)i);
+            }
+            yield return new WaitForSeconds(2);
+            StartCoroutine(_1LV());
+        }
     }
     void Update()
     {
