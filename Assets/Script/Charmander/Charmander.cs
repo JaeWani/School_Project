@@ -5,6 +5,7 @@ using UnityEngine;
 public class Charmander : Singleton<Charmander>
 {
     public GameObject _CharmanderBullet;
+    public GameObject _FireSpinObj;
 
     private enum EvolutionState
     {
@@ -69,24 +70,28 @@ public class Charmander : Singleton<Charmander>
     }
     void _Ember(int level) 
     {
-        StartCoroutine(_Attack());
-        IEnumerator _Attack()
-        {
             switch(_AmberLevel)
             {
                 case 0:
                 break;
-                case 1:
-                    if(AttackRange.I.nearestTarget != null)
-                    ObjectPooler.SpawnFromPool("Bullet",transform.position,Quaternion.identity);
-                break;
+                case 1:StartCoroutine(_1LV()); break;
                 case 2:
                 break;
 
             }
-
+        IEnumerator _1LV()
+        {
+            if(AttackRange.I.nearestTarget != null)
+                    ObjectPooler.SpawnFromPool("Bullet",transform.position,Quaternion.identity);
             yield return new WaitForSeconds(0.4f);
-            StartCoroutine(_Attack());
+            StartCoroutine(_1LV());
+        }
+        IEnumerator _2LV()
+        {
+            if(AttackRange.I.nearestTarget != null)
+                ObjectPooler.SpawnFromPool("Bullet",transform.position,Quaternion.identity);
+            yield return new WaitForSeconds(0.3f);
+
         }
     }
 
@@ -114,9 +119,8 @@ public class Charmander : Singleton<Charmander>
         {
             case 0:
             break;
-            case 1:
-            _1LV(2);
-            break;
+            case 1:_1LV(2);break;
+            case 2:_2LV(2.1f);break;
 
         }
         void _1LV(float Speed)
@@ -126,7 +130,6 @@ public class Charmander : Singleton<Charmander>
             float deg = 0;  // 각도
             float objSpeed = Speed; // 회전 속도
             StartCoroutine(Loof());
-
             IEnumerator Loof()
             {
                 deg += 1f * objSpeed;
@@ -140,7 +143,6 @@ public class Charmander : Singleton<Charmander>
                         SpinObj[i].transform.position = transform.position + new Vector3(x,y); 
                         SpinObj[i].transform.rotation = Quaternion.Euler(0,0,(deg + (i *(360 / ObjSize))) * -1);
                     }
-
                 }
                 else
                     deg = 0;
@@ -148,7 +150,35 @@ public class Charmander : Singleton<Charmander>
                 StartCoroutine(Loof());
             }
         }
-
+         void _2LV(float Speed)
+        {
+            GameObject obj = Instantiate(_FireSpinObj,transform);
+            SpinObj.Add(obj);
+            int ObjSize = SpinObj.Count;
+            float circleR = 1.5f; // 반지름
+            float deg = 0;  // 각도
+            float objSpeed = Speed; // 회전 속도
+            StartCoroutine(Loof());
+            IEnumerator Loof()
+            {
+                deg += 1f * objSpeed;
+                if(deg < 360)
+                {
+                    for(int i = 0; i < ObjSize; i++)
+                    {
+                        var rad = Mathf.Deg2Rad * (deg + (i*(360/ObjSize)));
+                        var x = circleR * Mathf.Sin(rad);
+                        var y = circleR * Mathf.Cos(rad);
+                        SpinObj[i].transform.position = transform.position + new Vector3(x,y); 
+                        SpinObj[i].transform.rotation = Quaternion.Euler(0,0,(deg + (i *(360 / ObjSize))) * -1);
+                    }
+                }
+                else
+                    deg = 0;
+                yield return new WaitForSeconds(0.01f);
+                StartCoroutine(Loof());
+            }
+        }
     }
 
     [Header ("화염방사")]
@@ -171,9 +201,8 @@ public class Charmander : Singleton<Charmander>
         {
             case 0:
             break;
-            case 1:
-            StartCoroutine(_1LV());
-            break;
+            case 1: StartCoroutine(_1LV()); break;
+            case 2: StartCoroutine(_2LV()); break;
         }
         IEnumerator _1LV()
         {
@@ -184,6 +213,16 @@ public class Charmander : Singleton<Charmander>
             }
             yield return new WaitForSeconds(2);
             StartCoroutine(_1LV());
+        }
+        IEnumerator _2LV()
+        {
+            for(int i = 0; i< 4; i++)
+            {
+                var flame = ObjectPooler.SpawnFromPool("Flame", transform.position).GetComponent<Flame>();
+                flame._Flame((Flame.dir)i);
+            }
+            yield return new WaitForSeconds(2);
+            StartCoroutine(_2LV());
         }
     }
     void Update()

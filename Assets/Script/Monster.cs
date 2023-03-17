@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    [Range (0,1000)]public int MaxHP;
     [Range (0,1000)] public int MonsterHP;
+
+
 
     Rigidbody2D rb;
     Animator _anim;
@@ -35,6 +38,7 @@ public class Monster : MonoBehaviour
     public bool IsKnockBack = false;
     void _KnockBack()
     {
+        if(this.gameObject.activeInHierarchy != false){
         StartCoroutine(KnockBack());
         IEnumerator KnockBack()
         {
@@ -46,6 +50,7 @@ public class Monster : MonoBehaviour
             rb.AddForce(dirVec.normalized * GameManager.I.KnockBackPower, ForceMode2D.Impulse);
         }
         IsKnockBack = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D other) 
     {
@@ -55,6 +60,10 @@ public class Monster : MonoBehaviour
             Debug.Log(wepon);
             Hit(wepon.WeponDamage * GameManager.I.playerDamage);
         }
+    }
+    void OnEnable() 
+    {
+        MonsterHP = MaxHP;
     }
     void OnDisable()
     {

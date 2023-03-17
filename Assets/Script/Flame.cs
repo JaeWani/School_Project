@@ -27,12 +27,22 @@ public class Flame : MonoBehaviour
                Objects[i].transform.position = new Vector2(i + 1 + pos.x,0.5f + pos.y);
                yield return new WaitForSeconds(0.1f);
             }
+            for(int i = Objects.Count-1; i >= 0; i--)
+            {
+                Objects[i].SetActive(false);
+                yield return new WaitForSeconds(0.1f);
+            }
             break;
             case dir.Left:
             for(int i = 0; i < Objects.Count; i++)
             {
                 Objects[i].SetActive(true);
                 Objects[i].transform.position = new Vector2(-i - 1 + pos.x,0.5f + pos.y);
+                yield return new WaitForSeconds(0.1f);
+            }
+            for(int i = Objects.Count -1 ; i >= 0; i--)
+            {
+                Objects[i].SetActive(false);
                 yield return new WaitForSeconds(0.1f);
             }
             break;
@@ -43,6 +53,11 @@ public class Flame : MonoBehaviour
                 Objects[i].transform.position = new Vector2(0 + pos.x,i+1 + pos.y);
                 yield return new WaitForSeconds(0.1f);
             }
+            for(int i = Objects.Count -1; i >= 0; i--)
+            {
+                Objects[i].SetActive(false);
+                yield return new WaitForSeconds(0.1f);
+            }
             break;
             case dir.Down:
             for(int i = 0; i < Objects.Count; i++)
@@ -51,8 +66,12 @@ public class Flame : MonoBehaviour
                 Objects[i].transform.position = new Vector2(0 + pos.x,-i-1 + pos.y);
                 yield return new WaitForSeconds(0.1f);
             }
+            for(int i = Objects.Count -1; i >= 0; i--)
+            {
+                Objects[i].SetActive(false);
+                yield return new WaitForSeconds(0.1f);
+            }
             break;
-            
             }
             yield return new WaitForSeconds(0.5f);
             gameObject.SetActive(false);
