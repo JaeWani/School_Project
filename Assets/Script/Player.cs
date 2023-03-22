@@ -31,10 +31,8 @@ public class Player : Singleton<Player>
     }
     void _Move()
     {
-        
         Vector2 nextVec = inputVec.normalized * GameManager.I.PlayerSpeed * Time.fixedDeltaTime;
         _Rb.MovePosition(_Rb.position + nextVec);
-
     }
     void _Animation(float veloX,float veloY) 
     {

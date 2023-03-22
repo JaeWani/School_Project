@@ -58,7 +58,7 @@ public class ExpManager : Singleton<ExpManager>
         switch(_num)
         {
             case 0:
-            Charmander.I.AmberLevel++;
+            Charmander.I.EmberLevel++;
             break;
             case 1:
             Charmander.I.FireSpinLevel++;

@@ -170,5 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0745984341db1e4498f21c9ef23be646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 100
   MonsterHP: 100
   IsKnockBack: 0

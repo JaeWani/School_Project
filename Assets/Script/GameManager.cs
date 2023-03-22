@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
         switch(CurrentCharacter)
         {
             case Playerble.Charmander:
-            Charmander.I.AmberLevel = 1;
+            Charmander.I.EmberLevel = 1;
                 break;
             case Playerble.Bulbasaur:
                 break;

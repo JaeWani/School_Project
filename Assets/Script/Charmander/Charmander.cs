@@ -48,29 +48,29 @@ public class Charmander : Singleton<Charmander>
 
     // 불꽃 세례 스킬
     [Header ("불꽃 세례")]
-    [SerializeField] private int _AmberLevel = 0;
-    public int AmberLevel
+    [SerializeField] private int _EmberLevel = 0;
+    public int EmberLevel
     {
             get
             {
-                return _AmberLevel;
+                return _EmberLevel;
             }
             set
             {
-                _AmberLevel = value;
+                _EmberLevel = value;
                 _SetSkill();
             }
     }
     void _SetSkill()
     {
         StopAllCoroutines();
-        _Ember(_AmberLevel);
+        _Ember(_EmberLevel);
         _Flamethrower(_FlamethrowerLevel);
         _FireSpin(_FireSpinLevel);
     }
     void _Ember(int level) 
     {
-            switch(_AmberLevel)
+            switch(_EmberLevel)
             {
                 case 0:
                 break;

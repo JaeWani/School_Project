@@ -6,6 +6,7 @@ public class TraceBullet : MonoBehaviour
 {
     Rigidbody2D rb;
     Vector3 vec;
+    public float bulletSpeed = 5;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -13,7 +14,7 @@ public class TraceBullet : MonoBehaviour
         {
         vec = AttackRange.I.nearestTarget.position - transform.position;
         vec = vec.normalized;
-        rb.velocity = vec * 5;
+        rb.velocity = vec * bulletSpeed;
         }
     }
     private void OnEnable() 
@@ -23,7 +24,7 @@ public class TraceBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         vec = AttackRange.I.nearestTarget.position - transform.position;
         vec = vec.normalized;
-        rb.velocity = vec * 5;
+        rb.velocity = vec * bulletSpeed;
         }
     }
 }
