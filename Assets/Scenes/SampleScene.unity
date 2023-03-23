@@ -5019,6 +5019,7 @@ GameObject:
   - component: {fileID: 637998009}
   - component: {fileID: 637998007}
   - component: {fileID: 637998010}
+  - component: {fileID: 637998011}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5167,13 +5168,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _CharmanderBullet: {fileID: 4917059619719981485, guid: e70f5d81cd7695d46af97968a53eb458, type: 3}
   _FireSpinObj: {fileID: 7470088949300258030, guid: 50e30a3ed54572c47ac768ac661dd9ae, type: 3}
-  _AmberLevel: 0
+  _EmberLevel: 0
+  AttackDelay:
+  - 0
+  - 0.5
+  - 0.4
+  - 0.3
+  - 0.2
+  - 0.1
+  BulletSpeed:
+  - 0
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  IsPierce: 000000000101
   _FireSpinLevel: 1
+  SpinSpeed: []
+  ObjCount: 
   SpinObj:
   - {fileID: 1327566510}
   - {fileID: 152724400}
   - {fileID: 1448427182}
   _FlamethrowerLevel: 1
+  Attackdelay:
+  - 0
+  - 4
+  - 3
+  - 2
+  - 1
+  - 0.5
+  AttackCount: 000000000200000002000000020000000400000004000000
 --- !u!114 &637998009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5207,6 +5233,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.45, y: 0.66}
   m_Direction: 0
+--- !u!114 &637998011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637998001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe21b64568a4fa468b71a9313d431d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &707990721
 GameObject:
   m_ObjectHideFlags: 0
@@ -15608,7 +15646,7 @@ MonoBehaviour:
   - {fileID: 49107096}
   SkillPanel: {fileID: 1452338399}
   PlayerLevel: 1
-  NeedExp: 0000000064000000c80000005e010000f4010000bc020000
+  NeedExp: 0000000064000000c80000005e010000f4010000bc020000e8030000b0040000dc0500006c070000
 --- !u!4 &1853638053
 Transform:
   m_ObjectHideFlags: 0

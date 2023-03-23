@@ -8,10 +8,11 @@ public class Charmander_Skill : Singleton<Charmander_Skill>
     /// 모든 스킬의 반복을 멈춥니다.
     /// 스킬의 수치를 재설정하고 싶을때 호출합니다.
     ///</summary>
-    public void StopAllSkill()
+    public static void StopAllSkill()
     {
-        StopAllCoroutines();
+        I.StopAllCoroutines();
     }
+
     ///<summary>
     /// 불꽃세례 스킬 함수입니다. 
     /// 매개변수로 관통 여부, 공격속도, 총알 속도를 요구합니다.
@@ -74,6 +75,7 @@ public class Charmander_Skill : Singleton<Charmander_Skill>
             StartCoroutine(Loof());
         }
     }
+
     ///<summary>
     /// 화염방사 스킬 함수입니다. 
     /// 매개변수로 공격 횟수와 쿨타임을 요구합니다.
